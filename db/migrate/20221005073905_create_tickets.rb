@@ -1,6 +1,6 @@
 class CreateTickets < ActiveRecord::Migration[6.1]
   def change
-    create_table :tickets do |t|
+    create_table :tickets, id: :uuid do |t|
       t.references :event, null: false, foreign_key: true, type: :uuid
       t.string :name
       t.string :payment_required
@@ -11,4 +11,6 @@ class CreateTickets < ActiveRecord::Migration[6.1]
       t.timestamps
     end
   end
+
+  
 end

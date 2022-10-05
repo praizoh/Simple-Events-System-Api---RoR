@@ -81,7 +81,10 @@ class Message
       'Event(s) updated successfully'
     end
 
-    def self.event_created
+    def self.ticket_created
       'Ticket created successfully'
+    end
+    def self.ticket_fetched
+      'Ticket(s) fetched successfully'
     end
  end

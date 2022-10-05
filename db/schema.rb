@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_10_05_073905) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
-  create_table "tickets", force: :cascade do |t|
+  create_table "tickets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "event_id", null: false
     t.string "name"
     t.string "payment_required"

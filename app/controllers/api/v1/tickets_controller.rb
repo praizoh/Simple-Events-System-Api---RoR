@@ -1,11 +1,23 @@
 class Api::V1::TicketsController < ApplicationController
   def create
     @user = current_user
-    @ticket = Ticket.create!(ticket_params.merge(user_id: @user[:id]))
+    @event = Event.find_by_id(params[:id])
+    raise(ExceptionHandler::EventNotFound)  unless @event
+    raise(ExceptionHandler::Unauthorized) unless @event[:user_id] == @user[:id]
+    @ticket = Ticket.create!(ticket_params.merge(event_id: params[:id]))
     @response = { status: Status.success, message: Message.ticket_created, data:{ticket:@ticket} }
     json_response(@response, :ok)
   end
 
+  def index
+    @user = current_user
+    @event = Event.find_by_id(params[:id])
+    raise(ExceptionHandler::EventNotFound)  unless @event
+    raise(ExceptionHandler::Unauthorized) unless @event[:user_id] == @user[:id]
+    @tickets = Ticket.where(event_id: params[:id]).order(created_at: :asc)
+    @response = { status: Status.success, message: Message.ticket_fetched, data:@tickets }
+    json_response(@response, :ok)
+  end
   private
     
   def ticket_params

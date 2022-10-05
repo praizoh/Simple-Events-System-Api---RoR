@@ -15,7 +15,7 @@ class Api::V1::EventsController < ApplicationController
   def show
     event = Event.find_by(id: params[:id])
     if event 
-      @response = { status: Status.success, message: Message.event_fetched, data:{event:event} }
+      @response = { status: Status.success, message: Message.event_fetched, data:{event:event, tickets:event.tickets} }
       json_response(@response, :ok)
     else 
       @response = { status: Status.bad_request, message: Message.event_does_not_exist }

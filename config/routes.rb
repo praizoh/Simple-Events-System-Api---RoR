@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'tickets/index'
-      get 'tickets/show'
-      get 'tickets', to: 'tickets#create'
+      post 'events/:id/tickets', to: 'tickets#create'
+      get 'events/:id/tickets', to: 'tickets#index'
     end
   end
   namespace :api do
