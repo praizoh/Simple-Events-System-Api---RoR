@@ -13,6 +13,14 @@ Simple events system api is a backend application built with ruby on rails for a
 8. Create Ticket For An Event
 9. Fetch all tickets for an event
 
+**Future Feature Updates**
+1. Add role management
+2. Allow events creation for onsite events
+3. Allow recurring events or one-one-events
+4. Tickets can be open to as many members
+5. Booking
+6. Ticket payments
+
 _____
 
 ## Technologies Used
